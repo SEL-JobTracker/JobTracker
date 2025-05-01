@@ -149,6 +149,32 @@ const SignIn = () => {
             <Button className="rounded-xl bg-sky-700">
               <ButtonText className="text-white">Sign In</ButtonText>
             </Button>
+            <HStack className="my-4 items-center justify-between">
+              <Divider className="flex-1" />
+              <Text className="mx-3 text-sm text-slate-500">Or Continue With</Text>
+              <Divider className="flex-1" />
+            </HStack>{' '}
+            <HStack className="mb-4 justify-center gap-10 space-x-6">
+              <Button
+                className="rounded-xl border border-slate-300 bg-white "
+                onPress={() => console.log('Google Sign-In')}>
+                <FontAwesome name="google" size={24} />
+              </Button>
+              <Button
+                className="rounded-xl border border-slate-300 bg-white "
+                onPress={() => console.log('LinkedIn Sign-In')}>
+                <AntDesign name="linkedin-square" size={24} />
+              </Button>
+            </HStack>
+            <HStack className="mt-4 items-center justify-center">
+              <Text className="text-sm text-slate-500">Don't have an account?</Text>
+              <Button
+                variant="link"
+                onPress={() => console.log('Navigate to Sign Up')}
+                className="ml-2">
+                <Text className="text-sm font-semibold text-sky-700">Sign Up</Text>
+              </Button>
+            </HStack>
           </VStack>
         </VStack>
       )}
