@@ -107,9 +107,50 @@ const SignIn = () => {
           </Box>
         </HStack>
       ) : (
-        <Text className="text-center text-lg font-bold">
-          Please use a desktop browser to access this page.
-        </Text>
+        <VStack className="min-h-screen justify-center bg-sky-800 p-6">
+          <Image
+            source={logo}
+            alt="Logo"
+            className="mb-6 h-32 w-full self-center"
+            resizeMode="contain"
+          />
+
+          <VStack className="rounded-xl bg-white p-6 shadow-md">
+            <Heading size="xl" className="mb-6 text-center">
+              Welcome to ACE Job Portal
+            </Heading>
+            <FormControl>
+              <FormControlLabel>
+                <FormControlLabelText>Email</FormControlLabelText>
+              </FormControlLabel>
+              <Input className="mb-3">
+                <InputField
+                  type="text"
+                  placeholder="email"
+                  value={inputValue}
+                  onChangeText={setInputValue}
+                />
+              </Input>
+            </FormControl>
+            <FormControl>
+              <FormControlLabel>
+                <FormControlLabelText>Password</FormControlLabelText>
+              </FormControlLabel>
+              <Input className="mb-3">
+                <InputField
+                  type="password"
+                  placeholder="password"
+                  value={passwordValue}
+                  onChangeText={setPasswordValue}
+                  secureTextEntry
+                />
+              </Input>
+            </FormControl>
+            <Button className="rounded-xl bg-sky-700">
+              <ButtonText className="text-white">Sign In</ButtonText>
+            </Button>
+          </VStack>
+        </VStack>
       )}
     </>
   );
