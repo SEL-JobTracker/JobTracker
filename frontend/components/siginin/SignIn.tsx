@@ -1,185 +1,137 @@
-import { useState } from 'react';
-import { Platform, Dimensions } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import { Image, useWindowDimensions, Text, Pressable } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import { Divider } from '../ui/divider';
 
-import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
 import { FormControl, FormControlLabel, FormControlLabelText } from '@/components/ui/form-control';
 import { Heading } from '@/components/ui/heading';
 import { HStack } from '@/components/ui/hstack';
-import { Image } from '@/components/ui/image';
 import { Input, InputField } from '@/components/ui/input';
-import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 
-const logo = require('@/assets/logo.png');
+export default function SignUp() {
+  const { width } = useWindowDimensions();
+  const { height } = useWindowDimensions();
+  const isDesktop = width >= 768;
 
-const SignIn = () => {
-  const [inputValue, setInputValue] = useState<string>('');
-  const [passwordValue, setPasswordValue] = useState<string>('');
-
-  const screenWidth = Dimensions.get('window').width;
-  const isDesktop = Platform.OS === 'web' && screenWidth >= 768;
-
+  const handleSubmit = () => {
+    console.log('Form submitted');
+  };
   return (
-    <>
-      {isDesktop ? (
-        <HStack className="h-screen w-full">
-          <Box className="w-1/2 items-center justify-center bg-sky-800">
-            <Image source={logo} alt="Logo" className="h-48 w-3/4" resizeMode="contain" />
-          </Box>
-
-          <Box className="w-1/2 items-center justify-center p-6">
-            <VStack className="h-full w-full max-w-md justify-center">
-              <Heading size="2xl" className="mb-8">
-                Welcome to ACE Job Portal
-              </Heading>
-
-              <FormControl>
-                <FormControlLabel>
-                  <FormControlLabelText>Email</FormControlLabelText>
-                </FormControlLabel>
-                <Input className="mb-3">
-                  <InputField
-                    type="text"
-                    placeholder="email"
-                    value={inputValue}
-                    onChangeText={(text) => {
-                      setInputValue(text);
-                    }}
-                  />
-                </Input>
-              </FormControl>
-
-              <FormControl>
-                <FormControlLabel>
-                  <FormControlLabelText>Password</FormControlLabelText>
-                </FormControlLabel>
-                <Input className="mb-3">
-                  <InputField
-                    type="password"
-                    placeholder="password"
-                    value={passwordValue}
-                    onChangeText={(text) => {
-                      setPasswordValue(text);
-                    }}
-                    secureTextEntry
-                  />
-                </Input>
-              </FormControl>
-
-              <Button className="rounded-xl bg-sky-700">
-                <ButtonText className="text-white">Sign In</ButtonText>
-              </Button>
-              <HStack className="my-4 items-center justify-between">
-                <Divider className="flex-1" />
-                <Text className="mx-3 text-sm text-slate-500">Or Continue With</Text>
-                <Divider className="flex-1" />
-              </HStack>
-
-              <HStack className="mb-4 justify-center space-x-6">
-                <Button
-                  variant="outline"
-                  className="w-1/3 rounded-xl border border-slate-300 bg-white p-3"
-                  onPress={() => console.log('Google Sign-In')}>
-                  <FontAwesome name="google" size={24} />
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-1/3 rounded-xl border border-slate-300 bg-white p-3"
-                  onPress={() => console.log('LinkedIn Sign-In')}>
-                  <AntDesign name="linkedin-square" size={24} />
-                </Button>
-              </HStack>
-              <HStack className="mt-4 items-center justify-center text-lg">
-                <Text className="text-sm text-slate-500">Don't have an account?</Text>
-                <Button
-                  variant="link"
-                  onPress={() => console.log('Navigate to Sign Up')}
-                  className="ml-2">
-                  <Text className="text-sm font-semibold text-sky-700">Sign Up</Text>
-                </Button>
-              </HStack>
-            </VStack>
-          </Box>
-        </HStack>
-      ) : (
-        <VStack className="min-h-screen justify-center bg-sky-800 p-6">
+    <HStack className="flex min-h-screen w-full flex-col md:flex-row">
+      {/* Left: Logo (desktop only) */}
+      {isDesktop && (
+        <VStack className="w-3/4 items-center justify-center bg-sky-800 p-8">
           <Image
-            source={logo}
-            alt="Logo"
-            className="mb-6 h-32 w-full self-center"
-            resizeMode="contain"
+            source={require('@/assets/logo.png')}
+            style={{
+              width: width * 0.7,
+              height: height * 0.15,
+              resizeMode: 'contain',
+            }}
           />
+        </VStack>
+      )}
 
-          <VStack className="rounded-xl bg-white p-6 shadow-md">
-            <Heading size="xl" className="mb-6 text-center">
-              Welcome to ACE Job Portal
-            </Heading>
-            <FormControl>
+      {/* Right: Form */}
+      <VStack
+        className={`${
+          isDesktop ? 'w-1/2' : 'w-full bg-sky-800'
+        } min-h-screen items-center justify-center px-4 py-8 sm:px-6 sm:py-3 md:px-12`}>
+        {/* Mobile Logo */}
+        {!isDesktop && (
+          <Image
+            source={require('@/assets/logo.png')}
+            style={{
+              width: width * 0.75,
+              height: width * 0.2,
+              resizeMode: 'contain',
+              marginBottom: 20,
+            }}
+          />
+        )}
+
+        <VStack
+          style={{ width: isDesktop ? width * 0.4 : '100%' }}
+          className="gap-y-5 rounded-2xl bg-white p-5 ">
+          <Heading size="2xl" className="mb-2 text-center text-xl font-bold sm:text-2xl">
+            Welcome to ACE Job Portal
+          </Heading>
+
+          {/* Form Fields */}
+          <VStack className="min-w-4 gap-y-4">
+            {/* Email */}
+            <FormControl size="md">
               <FormControlLabel>
-                <FormControlLabelText>Email</FormControlLabelText>
+                <FormControlLabelText className="text-sm font-medium text-gray-700">
+                  Email
+                </FormControlLabelText>
               </FormControlLabel>
-              <Input className="mb-3">
-                <InputField
-                  type="text"
-                  placeholder="email"
-                  value={inputValue}
-                  onChangeText={setInputValue}
-                />
+              <Input className="mt-1 rounded-lg border-gray-200 bg-gray-50">
+                <InputField type="text" placeholder="Enter your email" className="h-11 sm:h-12" />
               </Input>
             </FormControl>
-            <FormControl>
+
+            {/* Password */}
+            <FormControl size="md">
               <FormControlLabel>
-                <FormControlLabelText>Password</FormControlLabelText>
+                <FormControlLabelText className="text-sm font-medium text-gray-700">
+                  Password
+                </FormControlLabelText>
               </FormControlLabel>
-              <Input className="mb-3">
+              <Input className="mt-1 rounded-lg border-gray-200 bg-gray-50">
                 <InputField
                   type="password"
-                  placeholder="password"
-                  value={passwordValue}
-                  onChangeText={setPasswordValue}
+                  placeholder="Create a password"
+                  className="h-11 sm:h-12"
                   secureTextEntry
                 />
               </Input>
             </FormControl>
-            <Button className="rounded-xl bg-sky-700">
-              <ButtonText className="text-white">Sign In</ButtonText>
+
+            {/* Sign Up Button */}
+            <Button
+              className="h-11 w-full rounded-lg bg-sky-800 hover:bg-sky-900 active:bg-sky-900 sm:h-12"
+              onPress={handleSubmit}>
+              <ButtonText className="text-base font-semibold text-white sm:text-lg">
+                Sign Up
+              </ButtonText>
             </Button>
-            <HStack className="my-4 items-center justify-between">
-              <Divider className="flex-1" />
-              <Text className="mx-3 text-sm text-slate-500">Or Continue With</Text>
-              <Divider className="flex-1" />
-            </HStack>{' '}
-            <HStack className="mb-4 justify-center gap-10 space-x-6">
+
+            {/* Divider */}
+            <HStack className="my-2 items-center sm:my-3">
+              <Divider className="flex-1 border-gray-300" />
+              <Text className="mx-4 text-sm text-gray-500">or continue with</Text>
+              <Divider className="flex-1 border-gray-300" />
+            </HStack>
+
+            {/* Social Buttons */}
+            <HStack className="mb-2 w-full gap-4 sm:justify-center sm:gap-6 md:mb-5">
               <Button
-                className="rounded-xl border border-slate-300 bg-white "
-                onPress={() => console.log('Google Sign-In')}>
-                <FontAwesome name="google" size={24} />
+                variant="outline"
+                className="h-12 flex-1 items-center justify-center rounded-lg border border-gray-200"
+                onPress={() => console.log('Google sign-up')}>
+                <FontAwesome name="google" size={24} color="#000" />
               </Button>
+
               <Button
-                className="rounded-xl border border-slate-300 bg-white "
-                onPress={() => console.log('LinkedIn Sign-In')}>
-                <AntDesign name="linkedin-square" size={24} />
+                variant="outline"
+                className="h-12 flex-1 items-center justify-center rounded-lg border border-gray-200"
+                onPress={() => console.log('LinkedIn sign-up')}>
+                <FontAwesome name="linkedin" size={24} color="#000" />
               </Button>
             </HStack>
-            <HStack className="mt-4 items-center justify-center">
-              <Text className="text-sm text-slate-500">Don't have an account?</Text>
-              <Button
-                variant="link"
-                onPress={() => console.log('Navigate to Sign Up')}
-                className="ml-2">
-                <Text className="text-sm font-semibold text-sky-700">Sign Up</Text>
-              </Button>
-            </HStack>
+
+            {/* Sign In Link */}
+            <Pressable className="mt-4">
+              <Text className="text-center text-sm text-gray-500 sm:text-base">
+                Already have an account? <Text className="font-semibold text-sky-800">Sign in</Text>
+              </Text>
+            </Pressable>
           </VStack>
         </VStack>
-      )}
-    </>
+      </VStack>
+    </HStack>
   );
-};
-
-export default SignIn;
+}
