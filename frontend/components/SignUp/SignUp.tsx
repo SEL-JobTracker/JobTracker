@@ -9,6 +9,8 @@ import { VStack } from "@/components/ui/vstack";
 import { HStack } from "@/components/ui/hstack";
 import { Image, useWindowDimensions, Text, Pressable } from "react-native";
 import { Heading } from "@/components/ui/heading";
+import { Divider } from "../ui/divider";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function SignUp() {
 
@@ -32,7 +34,7 @@ export default function SignUp() {
             </VStack>
 
             {/* Right: Form */}
-            <VStack className="w-1/2 min-h-screen items-center justify-center px-12 py-8">
+            <VStack className="w-1/2 min-h-screen items-center justify-center px-12 sm:py-4  py-8"  >
                 <VStack
                     style={{ width: 420 }}
                     className="gap-y-5 rounded-2xl bg-white px-5 py-3"
@@ -105,6 +107,40 @@ export default function SignUp() {
                             </ButtonText>
                         </Button>
 
+
+                        {/* Divider */}
+                        <HStack className="items-center my-3">
+                            <Divider className="flex-1 border-gray-300" />
+                            <Text className="mx-4 text-sm text-gray-500">or continue with</Text>
+                            <Divider className="flex-1 border-gray-300" />
+                        </HStack>
+
+                        {/* Social Buttons */}
+                        <HStack className="w-full gap-6 justify-center mb-5">
+                            <Button
+                                variant="outline"
+                                className="w-1/2 h-12 rounded-lg border border-gray-200 justify-center items-center"
+                                onPress={() => console.log("Google sign-up")}
+                            >
+                                <FontAwesome name="google" size={24} color="#000" />
+                            </Button>
+
+                            <Button
+                                variant="outline"
+                                className="w-1/2 h-12 rounded-lg border border-gray-200 justify-center items-center"
+                                onPress={() => console.log("LinkedIn sign-up")}
+                            >
+                                <FontAwesome name="linkedin" size={24} color="#000" />
+                            </Button>
+                        </HStack>
+
+                        {/* Sign In link */}
+                        <Pressable className="mt-4">
+                            <Text className="text-center text-base text-gray-500">
+                                Already have an account?{" "}
+                                <Text className="text-sky-800 font-semibold">Sign in</Text>
+                            </Text>
+                        </Pressable>
                     </VStack>
                 </VStack>
             </VStack>
