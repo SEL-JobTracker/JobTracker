@@ -22,7 +22,7 @@ export default function SignUp() {
     <HStack className="flex min-h-screen w-full flex-col md:flex-row">
       {/* Left: Logo (desktop only) */}
       {isDesktop && (
-        <VStack className="w-3/4 items-center justify-center bg-sky-800 p-8">
+        <VStack className="w-1/2 items-center justify-center bg-sky-800 p-8">
           <Image
             source={require('@/assets/logo.png')}
             style={{
@@ -45,7 +45,7 @@ export default function SignUp() {
             source={require('@/assets/logo.png')}
             style={{
               width: width * 0.75,
-              height: width * 0.2,
+              height: height * 0.2,
               resizeMode: 'contain',
               marginBottom: 20,
             }}
