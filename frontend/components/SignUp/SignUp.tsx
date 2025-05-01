@@ -15,6 +15,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 export default function SignUp() {
 
     const { width } = useWindowDimensions();
+    const { height } = useWindowDimensions();
     const isDesktop = width >= 768;
 
     const handleSubmit = () => {
@@ -24,12 +25,12 @@ export default function SignUp() {
         <HStack className="flex flex-col md:flex-row w-full min-h-screen">
         {/* Left: Logo (desktop only) */}
         {isDesktop && (
-          <VStack className="w-1/2 bg-sky-800 items-center justify-center p-8">
+          <VStack className="w-1/2 bg-sky-800 items-center justify-center py-8 px-4 sm:py-3 md:px-12 ">
             <Image
               source={require("@/assets/ace_logo.png")}
               style={{
                 width: width * 0.7,
-                height: width * 0.1,
+                height: height * 0.2,
                 resizeMode: "contain",
               }}
             />
@@ -46,8 +47,8 @@ export default function SignUp() {
             <Image
               source={require("@/assets/ace_logo.png")}
               style={{
-                width: width * 0.6,
-                height: width * 0.2,
+                width: width * 0.7,
+                height: height * 0.2,
                 resizeMode: "contain",
                 marginBottom: 20,
               }}
@@ -55,7 +56,7 @@ export default function SignUp() {
           )}
       
           <VStack
-            style={{ width: isDesktop ? 420 : "100%" }}
+            style={{ width: isDesktop ? width*0.4 : "100%" }}
             className="gap-y-5 rounded-2xl bg-white px-5 py-6"
           >
             <Heading
