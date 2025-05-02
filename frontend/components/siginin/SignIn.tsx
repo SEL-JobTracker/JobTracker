@@ -107,17 +107,17 @@ export default function SignUp() {
             </HStack>
 
             {/* Social Buttons */}
-            <HStack className="mb-2 w-full gap-4 sm:justify-center sm:gap-6 md:mb-5">
+            <HStack className="mb-2 w-full items-center justify-center gap-4 sm:gap-6 md:mb-5">
               <Button
                 variant="outline"
-                className="h-12 flex-1 items-center justify-center rounded-lg border border-gray-200"
+                className="flex h-12 items-center justify-center rounded-lg border border-gray-200"
                 onPress={() => console.log('Google sign-up')}>
                 <FontAwesome name="google" size={24} color="#000" />
               </Button>
 
               <Button
                 variant="outline"
-                className="h-12 flex-1 items-center justify-center rounded-lg border border-gray-200"
+                className="flex h-12 items-center justify-center rounded-lg border border-gray-200"
                 onPress={() => console.log('LinkedIn sign-up')}>
                 <FontAwesome name="linkedin" size={24} color="#000" />
               </Button>
